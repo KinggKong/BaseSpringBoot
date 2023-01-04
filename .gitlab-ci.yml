@@ -1,0 +1,17 @@
+stages:
+  - build
+build:
+  stage: build
+  tags:
+    - Project
+  script:
+    - chmod +x mvnw
+    - ./mvnw clean install -DskipTest #build file jar
+    - docker container rm -f Project || echo "d"
+    - docker image rm -f Project:latest || echo "d"
+    - docker build -t Project:latest .
+    - docker run -t -d -p 8085:8085 -v "/data:/uploads" --name Project Project:latest
+    - echo "Deploy Complete"
+  only:
+#    - /^education_[0-9]+(?:.[0-9]+)+$/ # regular expression
+    - master
