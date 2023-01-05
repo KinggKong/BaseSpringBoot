@@ -1,11 +1,9 @@
-package com.global.project.Entities;
+package com.global.project.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "tbl_user")

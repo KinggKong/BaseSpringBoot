@@ -1,7 +1,6 @@
 package com.global.project.Dto;
 
-import com.global.project.Entities.RoleEntity;
-import com.global.project.Entities.UserEntity;
+import com.global.project.Entity.UserEntity;
 import com.global.project.Utils.Const;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor

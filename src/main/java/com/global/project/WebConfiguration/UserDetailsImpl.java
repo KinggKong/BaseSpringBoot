@@ -1,6 +1,6 @@
 package com.global.project.WebConfiguration;
 
-import com.global.project.Entities.UserEntity;
+import com.global.project.Entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.global.project.RestController.Public;
 
-import com.global.project.Entities.RoleEntity;
-import com.global.project.Entities.UserEntity;
+import com.global.project.Entity.RoleEntity;
+import com.global.project.Entity.UserEntity;
 import com.global.project.Repository.RoleRepository;
 import com.global.project.Repository.UserRepository;
 import com.global.project.Utils.Const;

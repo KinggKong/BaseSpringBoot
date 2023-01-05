@@ -1,6 +1,6 @@
 package com.global.project.Repository;
 
-import com.global.project.Entities.RoleEntity;
+import com.global.project.Entity.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

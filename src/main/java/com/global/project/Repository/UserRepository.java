@@ -1,6 +1,6 @@
 package com.global.project.Repository;
 
-import com.global.project.Entities.UserEntity;
+import com.global.project.Entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
