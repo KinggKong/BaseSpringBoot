@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 public class Security{
     @Autowired
     JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -67,7 +68,8 @@ public class Security{
                                 requests
                                         .requestMatchers(new AntPathRequestMatcher("/public/**"),
                                                         new AntPathRequestMatcher("/error"),
-                                                        new AntPathRequestMatcher("/auth/**")
+                                                        new AntPathRequestMatcher("/auth/**"),
+                                                        new AntPathRequestMatcher("/**")
                                         )
                                         .permitAll()
                                         .anyRequest()

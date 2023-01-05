@@ -28,7 +28,7 @@ public class Unauthorized implements AuthenticationEntryPoint {
         final Map<String, Object> body = new HashMap<>();
         body.put("timestamp",new Date());
         body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-        if(authException.getMessage() == "Bad credentials"){
+        if(authException.getMessage().equals("Bad credentials")){
             body.put("error","Bad credentials");
             body.put("message","Invalid username or password");
         }
