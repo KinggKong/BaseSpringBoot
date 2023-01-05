@@ -1,4 +1,4 @@
-package com.global.project.WebConfiguration.JwtConfig;
+package com.global.project.Configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class JwtResponse {
+public class SigninResponse {
     private Long id;
     private String type = "Bearer";
     private String token;

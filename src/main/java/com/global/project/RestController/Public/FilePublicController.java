@@ -19,7 +19,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/public/api/file")
-public class FileController {
+public class FilePublicController {
     @Autowired
     private ServletContext servletContext;
     @Autowired

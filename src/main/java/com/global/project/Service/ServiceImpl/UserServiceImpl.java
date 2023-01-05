@@ -3,7 +3,7 @@ package com.global.project.Service.ServiceImpl;
 import com.global.project.Dto.UserDto;
 import com.global.project.Repository.UserRepository;
 import com.global.project.Service.IUserService;
-import com.global.project.WebConfiguration.UserDetailsImpl;
+import com.global.project.Configuration.UserDetailsImpl;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

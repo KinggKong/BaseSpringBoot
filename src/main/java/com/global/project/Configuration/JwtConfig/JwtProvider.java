@@ -1,8 +1,8 @@
-package com.global.project.WebConfiguration.JwtConfig;
+package com.global.project.Configuration.JwtConfig;
 
 import com.global.project.Entity.UserEntity;
 import com.global.project.Repository.UserRepository;
-import com.global.project.WebConfiguration.UserDetailsImpl;
+import com.global.project.Configuration.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

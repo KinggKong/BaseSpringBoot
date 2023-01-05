@@ -1,4 +1,4 @@
-package com.global.project.RestController.Public;
+package com.global.project.Configuration;
 
 import com.global.project.Entity.RoleEntity;
 import com.global.project.Entity.UserEntity;
@@ -15,7 +15,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping(value = "/public")
-public class InitController {
+public class Init {
     @Autowired
     RoleRepository roleRepository;
     @Autowired

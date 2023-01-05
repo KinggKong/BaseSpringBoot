@@ -1,4 +1,4 @@
-package com.global.project.WebConfiguration;
+package com.global.project.Configuration;
 
 import com.global.project.Entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -51,7 +51,6 @@ public class UserDetailsImpl implements UserDetails {
     public String getRoleName() {
         return userEntity.getRole().getName();
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
