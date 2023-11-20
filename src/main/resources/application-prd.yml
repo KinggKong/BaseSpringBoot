@@ -10,7 +10,6 @@ spring:
     check-template-location: true
     check-template: true
     suffix: .html
-    mode: HTML5
     encoding: UTF-8
     content-type: text/html
   jpa:
