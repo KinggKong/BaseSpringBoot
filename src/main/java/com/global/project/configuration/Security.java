@@ -1,8 +1,8 @@
 package com.global.project.configuration;
 
-import com.global.project.configuration.Exception.Forbidden;
-import com.global.project.configuration.Exception.Unauthorized;
-import com.global.project.configuration.JwtConfig.JwtAuthenticationFilter;
+import com.global.project.configuration.exception.Forbidden;
+import com.global.project.configuration.exception.Unauthorized;
+import com.global.project.configuration.jwtConfig.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

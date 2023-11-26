@@ -4,21 +4,22 @@ spring:
     url: jdbc:mysql://{endpoint}:{port}/{nameSchema}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
     username:
     password:
-  thymeleaf:
-    cache: false
-    prefix: classpath:/templates/
-    check-template-location: true
-    check-template: true
-    suffix: .html
-    encoding: UTF-8
-    content-type: text/html
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+#    check-template-location: true
+#    check-template: true
+#    suffix: .html
+#    encoding: UTF-8
+#    content-type: text/html
   jpa:
     show-sql: false
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
   main:
     allow-bean-definition-overriding: true # Allow override for i18n
     allow-circular-references: true

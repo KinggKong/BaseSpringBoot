@@ -1,4 +1,4 @@
-package com.global.project.configuration.Exception;
+package com.global.project.configuration.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

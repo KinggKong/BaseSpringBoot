@@ -1,34 +1,40 @@
-package com.global.project.configuration;
+package com.global.project.service.serviceImpl;
 
+import com.global.project.dto.UserDto;
 import com.global.project.entity.Role;
 import com.global.project.entity.User;
 import com.global.project.repository.RoleRepository;
 import com.global.project.repository.UserRepository;
+import com.global.project.service.IUserService;
+import com.global.project.configuration.UserDetailsImpl;
 import com.global.project.utils.Const;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@RestController
-@RequestMapping(value = "/public")
-public class Init {
+@Service
+@Transactional
+public class UserServiceImpl implements IUserService, UserDetailsService {
     @Autowired
-    RoleRepository roleRepository;
+    IUserService iUserService;
     @Autowired
     UserRepository userRepository;
     @Autowired
+    RoleRepository roleRepository;
+    @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping(value = "/init")
-    public String init(){
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         User checkExsit = userRepository.findByUsername("admin").orElse(null);
         if(checkExsit == null){
             User user = new User();
-            user.setEmail("admin@gmail.com");
+            user.setEmail("admin");
             user.setUsername("admin");
             user.setActive(true);
             user.setPhone("0000000000");
@@ -57,6 +63,16 @@ public class Init {
             roleUser.setName(Const.ROLE_USER);
             roleRepository.saveAndFlush(roleUser);
         }
-        return "success";
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return new UserDetailsImpl(userRepository.findByUsername(username).get());
+    }
+
+    @Override
+    public UserDto signup(UserDto dto) {
+        return null;
     }
 }

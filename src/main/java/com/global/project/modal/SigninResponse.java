@@ -1,4 +1,4 @@
-package com.global.project.configuration;
+package com.global.project.modal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

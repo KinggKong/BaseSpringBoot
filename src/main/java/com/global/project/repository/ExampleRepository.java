@@ -1,10 +1,10 @@
 package com.global.project.repository;
 
-import com.global.project.entity.Customer;
+import com.global.project.entity.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>, QuerydslPredicateExecutor<Customer> {
+public interface ExampleRepository extends JpaRepository<Example, Long>, QuerydslPredicateExecutor<Example> {
 }

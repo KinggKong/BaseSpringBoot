@@ -1,7 +1,7 @@
-package com.global.project.configuration.JwtConfig;
+package com.global.project.configuration.jwtConfig;
 
 import com.global.project.repository.UserRepository;
-import com.global.project.service.ServiceImpl.UserServiceImpl;
+import com.global.project.service.serviceImpl.UserServiceImpl;
 import com.global.project.configuration.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import jakarta.servlet.FilterChain;

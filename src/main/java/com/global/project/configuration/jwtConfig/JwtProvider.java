@@ -1,4 +1,4 @@
-package com.global.project.configuration.JwtConfig;
+package com.global.project.configuration.jwtConfig;
 
 import com.global.project.entity.User;
 import com.global.project.repository.UserRepository;

@@ -1,9 +1,11 @@
-package com.global.project.restController.Public;
+package com.global.project.restController;
 
 import com.global.project.repository.FileRepository;
 import com.global.project.utils.Const;
 import com.global.project.utils.FileUtils;
 import com.global.project.utils.MediaTypeUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -16,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
+@Tag(name = "02. FILE")
 @RestController
-@RequestMapping("/public/api/file")
-public class FilePublicController {
+@RequestMapping(value = Const.PREFIX_VERSION + "/file")
+public class RestFileController {
     @Autowired
     private ServletContext servletContext;
     @Autowired
@@ -27,6 +29,7 @@ public class FilePublicController {
     @Autowired
     FileRepository fileRepository;
 
+    @Operation(summary = "get file by name", description = "get file by name", tags = {"02. FILE"})
     @GetMapping(value = "/{fileName}")
     @Secured({Const.ROLE_SYSTEM})
     public ResponseEntity<InputStreamResource> fileUpload(@PathVariable(value = "fileName")String fileName) throws IOException {
@@ -40,6 +43,8 @@ public class FilePublicController {
                 .contentLength(file.length())
                 .body(resource);
     }
+
+    @Operation(summary = "delete file by name", description = "delete file by name", tags = {"02. FILE"})
     @DeleteMapping(value = "/{fileName}")
     public Boolean deleteImage(@PathVariable(value = "fileName")String filename) {
         return fileUtils.deleteFile(filename);
