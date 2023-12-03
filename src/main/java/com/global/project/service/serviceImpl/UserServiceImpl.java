@@ -41,10 +41,10 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
             user.setAddress("admin");
             user.setBirthDate(new Date());
             user.setAge(0);
-            Role role = roleRepository.findByName(Const.ROLE_SYSTEM);
+            Role role = roleRepository.findByName(Const.ROLE_ADMIN);
             if(role == null){
                 role = new Role();
-                role.setName(Const.ROLE_SYSTEM);
+                role.setName(Const.ROLE_ADMIN);
                 roleRepository.saveAndFlush(role);
             }
             user.setRole(role);

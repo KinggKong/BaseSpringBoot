@@ -16,7 +16,7 @@ public class SwaggerConfig {
     private static final String SCHEME_NAME = "Token";
     private static final String SCHEME = "Bearer";
     @Bean
-    public OpenAPI myOpenAPI() {
+    public OpenAPI OpenAPI() {
         Server devServer = new Server();
         devServer.setUrl("http://localhost:8085");
         devServer.setDescription("Server URL in Local environment");
