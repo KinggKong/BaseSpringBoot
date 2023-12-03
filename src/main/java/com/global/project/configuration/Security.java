@@ -3,6 +3,9 @@ package com.global.project.configuration;
 import com.global.project.configuration.exception.Forbidden;
 import com.global.project.configuration.exception.Unauthorized;
 import com.global.project.configuration.jwtConfig.JwtAuthenticationFilter;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +33,8 @@ public class Security{
     Unauthorized unauthorized;
     @Autowired
     Forbidden forbidden;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Bean
     public WebMvcConfigurer configurer() {
@@ -86,5 +91,9 @@ public class Security{
                 )
                 .httpBasic();
         return http.build();
+    }
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(entityManager);
     }
 }
