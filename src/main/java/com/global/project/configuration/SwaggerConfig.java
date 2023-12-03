@@ -13,7 +13,7 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
-    private static final String SCHEME_NAME = "bearerScheme";
+    private static final String SCHEME_NAME = "Token";
     private static final String SCHEME = "Bearer";
     @Bean
     public OpenAPI myOpenAPI() {
