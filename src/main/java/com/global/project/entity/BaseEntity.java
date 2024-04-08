@@ -28,13 +28,17 @@ public class BaseEntity {
         try{
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            this.setCreateBy(userDetails.getUsername());
+            this.createBy = userDetails.getUsername();
+            this.modifierBy = userDetails.getUsername();
+            this.createDate = new Date();
+            this.modifierDate = new Date();
         }catch (Exception e){
             this.createBy ="Unknow User";
             this.modifierBy ="Unknow User";
+            this.createDate = new Date();
+            this.modifierDate = new Date();
         }
-        this.createDate = new Date();
-        this.modifierDate = new Date();
+
     }
 
     @PreUpdate
@@ -42,12 +46,14 @@ public class BaseEntity {
         try{
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            this.setModifierBy(userDetails.getUsername());
+            this.modifierBy = userDetails.getUsername();
+            this.modifierDate = new Date();
         }catch (Exception e){
             this.modifierBy ="Unknow User";
+            this.modifierDate = new Date();
         }
-        this.modifierDate = new Date();
     }
+
 
     public Date getCreateDate() {
         return createDate;
