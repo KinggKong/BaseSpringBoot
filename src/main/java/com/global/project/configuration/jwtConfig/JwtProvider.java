@@ -32,6 +32,7 @@ public class JwtProvider {
                 .setSubject(Long.toString(userEntity.getId()))
                 .claim("username", userEntity.getUsername())
                 .claim("role", userEntity.getRole().getName())
+                .claim("idUser", userEntity.getId())
                 .setExpiration(expiryDate)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)

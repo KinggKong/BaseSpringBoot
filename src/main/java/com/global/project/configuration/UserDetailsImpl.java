@@ -19,6 +19,7 @@ public class UserDetailsImpl implements UserDetails {
     @Autowired
     User userEntity;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();

@@ -26,7 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
-public class Security{
+public class Security {
     @Autowired
     JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
@@ -53,7 +53,7 @@ public class Security{
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -71,11 +71,15 @@ public class Security{
                             try {
                                 requests
                                         .requestMatchers(new AntPathRequestMatcher("/public/**"),
-                                                        new AntPathRequestMatcher("/error"),
-                                                        new AntPathRequestMatcher("/auth/**"),
-                                                        new AntPathRequestMatcher("/**")
+                                                new AntPathRequestMatcher("/error"),
+                                                new AntPathRequestMatcher("/v1/api/auth/**"),
+                                                new AntPathRequestMatcher("/swagger-ui/**"),
+                                                new AntPathRequestMatcher("/v3/api-docs/**")
+//                                                new AntPathRequestMatcher("/**")
                                         )
                                         .permitAll()
+                                        .requestMatchers("/v1/api/users/**")
+                                        .authenticated()
                                         .anyRequest()
                                         .authenticated()
                                         .and()
@@ -92,6 +96,7 @@ public class Security{
                 .httpBasic();
         return http.build();
     }
+
     @Bean
     public JPAQueryFactory jpaQueryFactory() {
         return new JPAQueryFactory(entityManager);

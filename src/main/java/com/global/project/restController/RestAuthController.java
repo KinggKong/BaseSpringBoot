@@ -1,8 +1,10 @@
 package com.global.project.restController;
 
+import com.global.project.dto.UserDto;
 import com.global.project.modal.SigninRequest;
 import com.global.project.modal.SigninResponse;
 import com.global.project.entity.User;
+import com.global.project.modal.UserRequest;
 import com.global.project.repository.RoleRepository;
 import com.global.project.repository.UserRepository;
 import com.global.project.service.IUserService;
@@ -46,15 +48,22 @@ public class RestAuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         String jwt = jwtUtils.generateTokenByUsername(userDetails.getUsername());
-            return ResponseEntity.ok(new SigninResponse(userDetails.getUser().getId(), "Bearer", jwt, userDetails.getUsername(), userDetails.getUser().getEmail(),
-                    userDetails.getUser().getActive(), userDetails.getUser().getAvatar(), userDetails.getRoleName()));
+        return ResponseEntity.ok(new SigninResponse(userDetails.getUser().getId(), "Bearer", jwt, userDetails.getUsername(), userDetails.getUser().getEmail(),
+                userDetails.getUser().getActive(), userDetails.getUser().getAvatar(), userDetails.getRoleName()));
     }
+
+
     @Operation(summary = "reset pass admin", description = "reset pass admin to admin", tags = {"01. AUTH"})
     @GetMapping("/resetPassAdmin")
-    public String resetPassAdmin(){
+    public String resetPassAdmin() {
         User user = userRepository.findByUsername("admin").orElse(null);
         user.setPassword(passwordEncoder.encode("admin"));
         userRepository.save(user);
         return "";
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody UserRequest userRequest) {
+        return ResponseEntity.ok(iUserService.signup(userRequest));
     }
 }

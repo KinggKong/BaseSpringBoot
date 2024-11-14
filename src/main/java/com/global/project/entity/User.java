@@ -27,6 +27,7 @@ public class User extends BaseEntity{
     private Integer gender;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 

@@ -28,6 +28,7 @@ public class UserDto {
     private String roleName;
     private String phone;
     private String avatar;
+
     public UserDto(User user){
         this.id = user.getId();
         this.username= user.getUsername();
