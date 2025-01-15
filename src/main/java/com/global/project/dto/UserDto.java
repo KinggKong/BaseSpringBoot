@@ -29,18 +29,4 @@ public class UserDto {
     private String phone;
     private String avatar;
 
-    public UserDto(User user){
-        this.id = user.getId();
-        this.username= user.getUsername();
-        this.email = user.getEmail();
-        this.address = user.getAddress();
-        this.phone = user.getPhone();
-        this.createdDate = user.getCreateDate();
-        this.roleName = user.getRole().getName();
-        this.gender = user.getGender();
-        this.avatar = Const.DOMAIN + user.getAvatar();
-        this.fullName = user.getFullName();
-        this.age = user.getAge();
-        this.birthDate = user.getBirthDate();
-    }
 }

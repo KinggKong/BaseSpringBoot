@@ -4,86 +4,58 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
+@Data
 @MappedSuperclass
 public class BaseEntity {
     @Column(name = "create_date")
-    private Date createDate;
+    private LocalDateTime createdAt;
 
     @Column(name = "create_By")
-    private String createBy;
+    private String createdBy;
     @Column(name = "modifier_date")
-    private Date modifierDate;
+    private LocalDateTime updatedAt;
 
     @Column(name = "modifier_by")
-    private String modifierBy;
+    private String updatedBy;
 
     @PrePersist
-    public void prePersist(){
-        try{
+    public void prePersist() {
+        try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            this.createBy = userDetails.getUsername();
-            this.modifierBy = userDetails.getUsername();
-            this.createDate = new Date();
-            this.modifierDate = new Date();
-        }catch (Exception e){
-            this.createBy ="Unknow User";
-            this.modifierBy ="Unknow User";
-            this.createDate = new Date();
-            this.modifierDate = new Date();
+            this.createdBy = userDetails.getUsername();
+            this.updatedBy = userDetails.getUsername();
+            this.createdAt = LocalDateTime.now();
+            this.updatedAt = LocalDateTime.now();
+        } catch (Exception e) {
+            this.createdBy = "Unknow User";
+            this.updatedBy = "Unknow User";
+            this.createdAt = LocalDateTime.now();
+            this.updatedAt = LocalDateTime.now();
         }
 
     }
 
     @PreUpdate
-    public void preUpdate(){
-        try{
+    public void preUpdate() {
+        try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            this.modifierBy = userDetails.getUsername();
-            this.modifierDate = new Date();
-        }catch (Exception e){
-            this.modifierBy ="Unknow User";
-            this.modifierDate = new Date();
+            this.updatedBy = userDetails.getUsername();
+            this.updatedAt = LocalDateTime.now();
+        } catch (Exception e) {
+            this.updatedBy = "Unknow User";
+            this.updatedAt = LocalDateTime.now();
         }
     }
 
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getModifierDate() {
-        return modifierDate;
-    }
-
-    public void setModifierDate(Date modifierDate) {
-        this.modifierDate = modifierDate;
-    }
-
-    public String getModifierBy() {
-        return modifierBy;
-    }
-
-    public void setModifierBy(String modifierBy) {
-        this.modifierBy = modifierBy;
-    }
 }

@@ -13,10 +13,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
-    @Query("select u from User u where u.email = ?1")
-    User getByUsername(String username);
-    @Query("select u from User u where u.username like %?1% and u.role.name <> 'ROLE_SYSTEM'")
-    Page<User> searchUserByUserName(String textSearch, Pageable page);
-    @Query("select u from User u where u.role.name <> 'ROLE_SYSTEM'")
-    Page<User> findByPage(Pageable page);
+    boolean existsByUsername(String username);
 }

@@ -1,39 +1,63 @@
 package com.global.project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "tbl_user")
-@Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class User extends BaseEntity{
+@AllArgsConstructor
+@Table(name = "users")
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(max = 255)
+    @Column(name = "fullname")
+    private String fullname;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "first_name")
+    private String firstname;
+
+    @Column(name = "last_name")
+    private String lastname;
+
+    @Column(name = "email")
     private String email;
-    private String password;
-    private String phone;
-    private String fullName;
+
+    private LocalDate dob;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Column(name = "gender")
+    private int gender;
+
+    @Column(name = "is_online")
+    private Boolean isOnline;
+
+    @Size(max = 255)
+    @Column(name = "avatar")
     private String avatar;
-    private Integer age;
-    private String address;
-    private Boolean active;
-    private Integer gender;
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Role role;
+    @Size(max = 255)
+    @Column(name = "cover_photo")
+    private String coverPhoto;
 
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+    private String nickname;
+
+    @Column(name = "language")
+    private String language;
 }

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,15 +16,20 @@ import java.util.List;
 public class SwaggerConfig {
     private static final String SCHEME_NAME = "Token";
     private static final String SCHEME = "Bearer";
+
+    @Value("${facebook.openapi.staging-url}")
+    private String stagingUrl;
+
     @Bean
     public OpenAPI OpenAPI() {
         Server devServer = new Server();
-        devServer.setUrl("http://localhost:8085");
+        devServer.setUrl("http://localhost:8080");
         devServer.setDescription("Server URL in Local environment");
-//
-//        Server prodServer = new Server();
-//        prodServer.setUrl(prodUrl);
-//        prodServer.setDescription("Server URL in Production environment");
+
+
+        Server stagingServer = new Server();
+        stagingServer.setUrl(stagingUrl);
+        stagingServer.setDescription("Server URL in Staging environment");
 
 //        Contact contact = new Contact();
 //        contact.setEmail("nguyenquyen5120@gmail.com");
@@ -33,12 +39,12 @@ public class SwaggerConfig {
 //        License mitLicense = new License().name("CYVN License");
 
         Info info = new Info()
-                .title("Project: CYVN API")
+                .title("Project: CYVN API - Line 2")
                 .version("1.0")
 //                .contact(contact)
-                .description("CYVN API");
+                .description("CYVN API - Line 2");
 //                .license(mitLicense);
-        OpenAPI openApi = new OpenAPI().info(info).servers(List.of(devServer));
+        OpenAPI openApi = new OpenAPI().info(info).servers(List.of(stagingServer, devServer));
         addSecurity(openApi);
         return openApi;
     }
